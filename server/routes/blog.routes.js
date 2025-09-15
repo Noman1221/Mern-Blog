@@ -1,0 +1,14 @@
+import express from "express";
+import { addComment, createBlog, deleteBlog, deleteComment, getAllBlogs, getBlogById, getComments, updateBlog, updateComment } from "../controller/blog.controller.js";
+import isAuth from "../middleware/isAuth.js";
+const router = express.Router();
+router.post("/", isAuth, createBlog);
+router.get("/", isAuth, getAllBlogs);
+router.get("/:id", isAuth, getBlogById);
+router.delete("/:id", isAuth, deleteBlog);
+router.put("/:id", isAuth, updateBlog);
+router.post("/:id/comment", isAuth, addComment);
+router.delete("/:id/comment/:commentId", isAuth, deleteComment);
+router.put("/:id/comment/:commentId", isAuth, updateComment);
+router.get("/:id/comments", isAuth, getComments);
+export default router;
